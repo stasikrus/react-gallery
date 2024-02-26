@@ -1,44 +1,55 @@
-.modalBackdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+@keyframes modalContentAnimation {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.70);
   }
-  
-  .modalBlurBackground {
-    background-image: var(--modal-background-image);
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%); 
-    width: 1190px; 
-    height: 100%; 
-    background-size: 1190px auto; 
-    filter: blur(30px);
-    z-index: -1;
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  
-  .modalContent {
-    position: relative;
-    width: 1190px;
-    height: 700px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+}
 
-  .modalContent img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    box-shadow: 
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modalBlurBackground {
+  background-image: var(--modal-background-image);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1190px;
+  height: 100%;
+  background-size: 1190px auto;
+  filter: blur(30px);
+  z-index: -1;
+}
+
+
+.modalContent {
+  position: relative;
+  width: 1190px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: modalContentAnimation 0.9s ease forwards;
+}
+
+.modalContent img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  box-shadow:
     10px 10px 20px rgba(0, 0, 0, 0.5),
     -10px -10px 20px rgba(0, 0, 0, 0.5);
-  }
-  
+}

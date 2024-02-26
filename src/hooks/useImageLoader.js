@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { getRandomPhotos } from '../api/unsplashService';
 
-const useImageLoader = (perPage) => {
+export const useImageLoader = (perPage) => {
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -24,22 +24,19 @@ const useImageLoader = (perPage) => {
   }, [perPage]);
 
   const loadMoreImages = async () => {
-    setIsLoading(true);
     try {
       const url = getRandomPhotos(1);
       const response = await axios.get(url);
       const newImage = response.data[0].urls.regular;
       if (!images.includes(newImage)) {
         setImages(prevImages => [...prevImages, newImage]);
+      } else {
+        loadMoreImages();
       }
     } catch (error) {
       console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    } 
   };
 
   return { images, isLoading, loadMoreImages };
 };
-
-export default useImageLoader;
